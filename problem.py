@@ -34,9 +34,8 @@ def hamming_weight(n) :
     return t
     
     
-def testPlot():
-    A,B,C,X,Y = generate_problem(40000,10)
-    k, h = 40000, 10
+def testPlot(k, h):
+    A,B,C,X,Y = generate_problem(k,h)
     A=generate(k,h)
     B=generate(k,h)
     Xl, X=generate(k,h, returnBits = True)
@@ -47,8 +46,8 @@ def testPlot():
     for p in Xl:
         C = (C -  2 ** p * A) % n
         lst.append(hamming_weight(C))
-    plt.plot(list(range(h)), lst)
-    plt.draw()
+    plt.plot(list(range(h + 1)), lst)
+    plt.show()
     
 def backtrack(A,B,C,h,k,n,result,p):
     if p == k:
