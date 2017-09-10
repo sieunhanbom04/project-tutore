@@ -73,8 +73,14 @@ def backtrack(A,B,C,h,k,n,result,p):
     return backtrack(A,B,C,h,k,n,result,p + 1)
         
         
-        #backtrack(A,B
-        
+        #backtrack(A,B)
+def extended_euclid_algorithm(a,b):
+    if b==0:
+        return a,1,0
+    d,tempX,tempY=extended_euclid_algorithm(b,a%b)
+    x=tempY
+    y=tempX-(a/b)*tempY
+    return d,x,y    
     
      
 
