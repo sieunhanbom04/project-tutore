@@ -48,14 +48,30 @@ def testPlot(k, h):
         lst.append(hamming_weight(C))
     plt.plot(list(range(h + 1)), lst)
     plt.show()
-    
+   
+#suppose we have a function checkIfYExists(D, B, h, k, n) which return True, Y if it exists Y (k bits max, h ones) such as D = BY mod n otherwise returns False, None
+#here p is the current position we  are testing
 def backtrack(A,B,C,h,k,n,result,p):
     if p == k:
         return False, None
     elif len(result) == h:
-        return 
-    if hamming_weight(newC)==hamming_weight(C)-h:
-        newC=(C -  2 ** p * A) % n
+        #here check if the hamming weight of C is h^2 ?
+        ok, y = checkIfYExists(D, B, h, k, n)
+        if ok :
+            return True, (result, Y)
+        else :
+            return False, None
+       
+       
+    newC=(C -  2 ** p * A) % n
+    if hamming_weight(newC) == hamming_weight(C) - h:
+        newResult = result.copy()
+        newResult.append(p)
+        ok, res = backtrack(A,B,newC,h,k,n,newResult,p + 1)
+        if ok :
+            return True, res
+    return backtrack(A,B,C,h,k,n,result,p + 1)
+        
         
         #backtrack(A,B
         
